@@ -1,6 +1,8 @@
 # PvZ Replanted Mod
 
-A mod project for Plants vs. Zombies: Replanted. So far it's a test mod that writes a line to MelonLoader's log when it loads and when a level starts. It doesn't change the game.
+A mod for Plants vs. Zombies: Replanted that keeps the game running when you alt-tab. Normally the game pauses as soon as you click away. With this mod it keeps playing, music included, while your mouse and keyboard stay out of it until you come back.
+
+Alt-tab may still minimize the game in exclusive fullscreen, so windowed or borderless is safest.
 
 ## Install
 

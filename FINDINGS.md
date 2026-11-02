@@ -28,6 +28,11 @@ Studied: Plants vs. Zombies: Replanted, game version 1.2.1173, using REA on the 
 | All game data | `IDataService`: `PlantDefinitions`, `ZombieDefinitions`, `ProjectileDefinitions`, `AllLevelsData`, `GetPlantDefinition`, `GetZombieDefinition` |
 | Game speed | `GameplaySpeed` enum (`_Half`, `_Normal`, `_2X`, `_4x`, `_8X`) |
 
+## What stops the game on alt-tab
+
+- `Application.runInBackground` is off by default in this game. Turning it on keeps the game loop running: with another app in front, the game still used about 1.6 CPU cores.
+- `TransitionWhenFocusLostActivity.OnPlatformFocusChanged` is the game's own focus-lost handler. The mod blocks it when focus is lost, but it hasn't been seen firing yet, so it may not matter. Its log line (`Focus lost at frame ...`) will show if it ever does.
+
 ## Inferred, not proven
 
 - The code looks like a port of the original game's C++: the names match its style (`mBoard`, `mSunMoney`, `ZombieInitialize`). Knowledge of the original game should mostly carry over.

@@ -1,6 +1,7 @@
 using HarmonyLib;
-using Il2CppReloaded.Gameplay;
+using Il2CppSource.TreeStateActivities;
 using MelonLoader;
+using UnityEngine;
 
 [assembly: MelonInfo(typeof(PvZReplantedMod.Mod), "PvZReplantedMod", PvZReplantedMod.Mod.Version, "DontGoToCollege")]
 [assembly: MelonGame("PopCap Games", "PvZ Replanted")]
@@ -9,15 +10,24 @@ namespace PvZReplantedMod
 {
     public class Mod : MelonMod
     {
-        public const string Version = "0.1.1";
+        public const string Version = "0.2.0";
 
-        public override void OnInitializeMelon() => LoggerInstance.Msg("Loaded.");
+        public override void OnInitializeMelon()
+        {
+            // Unity stops the whole game loop on focus loss unless this is on.
+            Application.runInBackground = true;
+            LoggerInstance.Msg($"Keep running in background: {Application.runInBackground}");
+        }
     }
 
-    // Log-only proof that patches reach gameplay code; changes nothing in the game.
-    [HarmonyPatch(typeof(Board), nameof(Board.StartLevel))]
-    static class BoardStartLevelPatch
+    // The game also leaves gameplay for another state when focus is lost.
+    [HarmonyPatch(typeof(TransitionWhenFocusLostActivity), nameof(TransitionWhenFocusLostActivity.OnPlatformFocusChanged))]
+    static class FocusLostPatch
     {
-        static void Postfix(Board __instance) => Melon<Mod>.Logger.Msg($"Level started: mLevel={__instance.mLevel}");
+        static bool Prefix(bool hasFocus)
+        {
+            Melon<Mod>.Logger.Msg($"Focus {(hasFocus ? "back" : "lost")} at frame {Time.frameCount}");
+            return hasFocus;
+        }
     }
 }
