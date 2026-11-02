@@ -31,7 +31,13 @@ Studied: Plants vs. Zombies: Replanted, game version 1.2.1173, using REA on the 
 ## What stops the game on alt-tab
 
 - `Application.runInBackground` is off by default in this game. Turning it on keeps the game loop running: with another app in front, the game still used about 1.6 CPU cores.
-- `TransitionWhenFocusLostActivity.OnPlatformFocusChanged` is the game's own focus-lost handler. The mod blocks it when focus is lost, but it hasn't been seen firing yet, so it may not matter. Its log line (`Focus lost at frame ...`) will show if it ever does.
+- `TransitionWhenFocusLostActivity.OnPlatformFocusChanged` is the game's own focus-lost handler. It fires during gameplay (the log showed `Focus lost at frame 23043`), so the mod blocks it while Run in Background is on.
+
+## The options menu
+
+The menu is built from prefabs in the asset bundles, so its layout isn't in the dump. There are two copies: `GlobalPanels(Clone)/P_OptionsPanel` on the main menu and `Panels/P_GamePlay_OptionsPanel` in a level. Both have rows under `.../Top/NormalOptions/`.
+
+The mod adds its rows by copying `V-Sync` when that row's `UnityToggleBinder` binds. The copy has to be made under an inactive parent, then have its `UnityToggleBinder`, `BinderContainer` and `TextLocalizer` removed. Otherwise it would start up and take over the V-Sync setting. Mod settings are saved in `UserData\MelonPreferences.cfg`.
 
 ## Inferred, not proven
 
