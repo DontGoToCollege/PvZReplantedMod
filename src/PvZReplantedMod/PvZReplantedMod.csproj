@@ -9,7 +9,8 @@
     <CheckEolTargetFramework>false</CheckEolTargetFramework>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     <GenerateDependencyFile>false</GenerateDependencyFile>
-    <DebugType>embedded</DebugType>
+    <!-- Debug data records this computer's folder paths, and the DLL is published. -->
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
