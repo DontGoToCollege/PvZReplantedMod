@@ -1,6 +1,6 @@
 # What we know about the game
 
-Studied: Plants vs. Zombies: Replanted, game version 1.2.1173, using REA on the game's files. The hook points below were read from the files and haven't been tried in the running game yet.
+Studied: Plants vs. Zombies: Replanted, game version 1.2.1173, using REA on the game's files. The hook points below were read from the files. `Board.StartLevel` is confirmed working in the running game (the log showed `Level started: mLevel=1`); the others haven't been tried yet.
 
 ## Observed in the files
 
@@ -46,7 +46,7 @@ Use **MelonLoader**. Version 0.7.3 runs on this game: it generated its assemblie
 
 A mod is a small C# DLL that patches the methods above with Harmony. Generated classes get an `Il2Cpp` prefix, so `Reloaded.Gameplay.Board` becomes `Il2CppReloaded.Gameplay.Board`.
 
-To build, add a `local.props` file holding your game folder as `<GameDir>` (it stays out of git), then run `python build.py`. Save files live in `AppData\LocalLow\PopCap Games\PvZ Replanted`.
+To build, add a `local.props` file holding your game folder as `<GameDir>` (it stays out of git), then run `python build.py`. Settings and the game's own logs are in `AppData\LocalLow\PopCap Games\PvZ Replanted`. A progress save hasn't appeared there yet, so its location is still unconfirmed.
 
 ## Regenerating the dump
 
