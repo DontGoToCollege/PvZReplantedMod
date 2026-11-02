@@ -1,6 +1,6 @@
 # What we know about the game
 
-Studied: Plants vs. Zombies: Replanted, game version 1.2.1173, using REA on the game's files. The game was not run, so nothing here has been seen working live yet.
+Studied: Plants vs. Zombies: Replanted, game version 1.2.1173, using REA on the game's files. The hook points below were read from the files and haven't been tried in the running game yet.
 
 ## Observed in the files
 
@@ -39,11 +39,14 @@ Studied: Plants vs. Zombies: Replanted, game version 1.2.1173, using REA on the 
 
 - Field offsets. The dump has none, but a mod loader's generated assemblies handle them.
 - What any method's code does. Only names and signatures were read, nothing was decompiled.
-- Whether MelonLoader runs on this exact copy of the game.
 
 ## How to build mods
 
-Use **MelonLoader**. Published Replanted mods are built on it, and a [BepInEx plugin template](https://www.nuget.org/packages/Replanted.PluginTemplate) for the game itself recommends it. [RaptorRush135.PvZR.Sdk](https://www.nuget.org/packages/RaptorRush135.PvZR.Sdk) is a ready-made build setup for it, and [More Yetis](https://github.com/kedzie/MoreYetis) is a working example. A mod would be a small C# DLL that patches the methods above with Harmony.
+Use **MelonLoader**. Version 0.7.3 runs on this game: it generated its assemblies in about 40 seconds on first launch and loaded a test mod. Published Replanted mods are built on it too, and a [BepInEx plugin template](https://www.nuget.org/packages/Replanted.PluginTemplate) for the game itself recommends it. [More Yetis](https://github.com/kedzie/MoreYetis) is a working example.
+
+A mod is a small C# DLL that patches the methods above with Harmony. Generated classes get an `Il2Cpp` prefix, so `Reloaded.Gameplay.Board` becomes `Il2CppReloaded.Gameplay.Board`.
+
+To build, add a `local.props` file holding your game folder as `<GameDir>` (it stays out of git), then run `python build.py`. Save files live in `AppData\LocalLow\PopCap Games\PvZ Replanted`.
 
 ## Regenerating the dump
 

@@ -1,4 +1,5 @@
 dump/
+local.props
 Versions/
 bin/
 obj/
