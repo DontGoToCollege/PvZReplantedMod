@@ -1,6 +1,6 @@
 # What we know about the game
 
-Studied: Plants vs. Zombies: Replanted, game version 1.2.1173, using REA on the game's files. The hook points below were read from the files and haven't been tried in the running game yet.
+Studied: Plants vs. Zombies: Replanted, game version 1.2.1173, using REA on the game's files. The hook points below were read from the files. `Board.StartLevel` is confirmed working in the running game; the others haven't been tried yet.
 
 ## Observed in the files
 
