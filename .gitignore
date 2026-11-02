@@ -1,0 +1,6 @@
+dump/
+Versions/
+bin/
+obj/
+*.dll
+*.exe
